@@ -193,12 +193,12 @@
 #define MAX_REDUNDANT_TEMP_SENSOR_DIFF 10
 
 // Extruder temperature must be close to target for this long before M109 returns success
-#define TEMP_RESIDENCY_TIME 10  // (seconds)
-#define TEMP_HYSTERESIS 3       // (degC) range of +/- temperatures considered "close" to the target one
-#define TEMP_WINDOW     1       // (degC) Window around target to start the residency timer x degC early.
+#define TEMP_RESIDENCY_TIME 15  // (seconds)
+#define TEMP_HYSTERESIS 5       // (degC) range of +/- temperatures considered "close" to the target one
+#define TEMP_WINDOW     2       // (degC) Window around target to start the residency timer x degC early.
 
 // Bed temperature must be close to target for this long before M190 returns success
-#define TEMP_BED_RESIDENCY_TIME 10  // (seconds)
+#define TEMP_BED_RESIDENCY_TIME 30  // (seconds)
 #define TEMP_BED_HYSTERESIS 3       // (degC) range of +/- temperatures considered "close" to the target one
 #define TEMP_BED_WINDOW     1       // (degC) Window around target to start the residency timer x degC early.
 
@@ -251,9 +251,13 @@
   //#define  DEFAULT_Ki 1.08
   //#define  DEFAULT_Kd 114
   
-  #define  DEFAULT_Kp 21.90
-  #define  DEFAULT_Ki 1.52
-  #define  DEFAULT_Kd 79.10
+//  #define  DEFAULT_Kp 21.90 //old PID tuning without fan turned on
+//  #define  DEFAULT_Ki 1.52
+//  #define  DEFAULT_Kd 79.10
+
+  #define  DEFAULT_Kp 22.29 //new PID tuning with fan set to 180pwm
+  #define  DEFAULT_Ki 1.62
+  #define  DEFAULT_Kd 76.69
 
   // MakerGear
   //#define  DEFAULT_Kp 7.0
@@ -497,8 +501,8 @@ const bool Z_MIN_PROBE_ENDSTOP_INVERTING = true; // set to true to invert the lo
 #define X_MIN_POS 0
 #define Y_MIN_POS 0
 #define Z_MIN_POS 0
-#define X_MAX_POS 270
-#define Y_MAX_POS 260
+#define X_MAX_POS 250
+#define Y_MAX_POS 250
 #define Z_MAX_POS 300
 
 //===========================================================================
@@ -582,11 +586,11 @@ const bool Z_MIN_PROBE_ENDSTOP_INVERTING = true; // set to true to invert the lo
     // Arbitrary points to probe.
     // A simple cross-product is used to estimate the plane of the bed.
     #define ABL_PROBE_PT_1_X 0
-    #define ABL_PROBE_PT_1_Y 260
+    #define ABL_PROBE_PT_1_Y 250
     #define ABL_PROBE_PT_2_X 120
     #define ABL_PROBE_PT_2_Y 0
     #define ABL_PROBE_PT_3_X 250
-    #define ABL_PROBE_PT_3_Y 260
+    #define ABL_PROBE_PT_3_Y 250
 
   #endif // AUTO_BED_LEVELING_GRID
 
@@ -609,7 +613,7 @@ const bool Z_MIN_PROBE_ENDSTOP_INVERTING = true; // set to true to invert the lo
   //  (0,0)
   #define X_PROBE_OFFSET_FROM_EXTRUDER 0  // X offset: -left  +right  [of the nozzle]
   #define Y_PROBE_OFFSET_FROM_EXTRUDER 0  // Y offset: -front +behind [the nozzle]
-  #define Z_PROBE_OFFSET_FROM_EXTRUDER 0.4  // Z offset: -below +above  [the nozzle]
+  #define Z_PROBE_OFFSET_FROM_EXTRUDER -0.10  // Z offset: -below +above  [the nozzle]
 
   #define XY_TRAVEL_SPEED 4000         // X and Y axis travel speed between probes, in mm/min.
 
@@ -683,12 +687,12 @@ const bool Z_MIN_PROBE_ENDSTOP_INVERTING = true; // set to true to invert the lo
  * MOVEMENT SETTINGS
  */
 
-#define HOMING_FEEDRATE {50*60, 50*60, 2*60, 0}  // set the homing speeds (mm/min)
+#define HOMING_FEEDRATE {50*60, 50*60, 100, 0}  // set the homing speeds (mm/min)
 
 // default settings
 
-#define DEFAULT_AXIS_STEPS_PER_UNIT   {80,80,2566,100}  // default steps per unit for Ultimaker
-#define DEFAULT_MAX_FEEDRATE          {250, 250, 3, 70}    // (mm/sec)
+#define DEFAULT_AXIS_STEPS_PER_UNIT   {80,80,2566,99}  // default steps per unit for Ultimaker
+#define DEFAULT_MAX_FEEDRATE          {250, 250, 2, 70}    // (mm/sec)
 #define DEFAULT_MAX_ACCELERATION      {3000,3000,100,10000}    // X, Y, Z, E maximum start speed for accelerated moves. E default values are good for Skeinforge 40+, for older versions raise them a lot.
 
 #define DEFAULT_ACCELERATION          2500    // X, Y, Z and E acceleration in mm/s^2 for printing moves
@@ -696,7 +700,7 @@ const bool Z_MIN_PROBE_ENDSTOP_INVERTING = true; // set to true to invert the lo
 #define DEFAULT_TRAVEL_ACCELERATION   3000    // X, Y, Z acceleration in mm/s^2 for travel (non printing) moves
 
 // The speed change that does not require acceleration (i.e. the software might assume it can be done instantaneously)
-#define DEFAULT_XYJERK                40.0    // (mm/sec)
+#define DEFAULT_XYJERK                30.0    // (mm/sec)
 #define DEFAULT_ZJERK                 0.4     // (mm/sec)
 #define DEFAULT_EJERK                 5.0    // (mm/sec)
 
