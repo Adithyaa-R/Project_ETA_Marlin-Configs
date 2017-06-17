@@ -59,19 +59,19 @@
 #define SERVO2_PIN          5
 #define SERVO3_PIN          4
 
-#define X_STEP_PIN         54
-#define X_DIR_PIN          55
+#define X_STEP_PIN         54//swapping with Y after E1-Y swap
+#define X_DIR_PIN          55//originals 54 55 38
 #define X_ENABLE_PIN       38
 #define X_MIN_PIN           3
 #ifndef X_MAX_PIN
   #define X_MAX_PIN         2
 #endif
 
-#define Y_STEP_PIN         60
-#define Y_DIR_PIN          61
+#define Y_STEP_PIN         60//18-03-17 swapping the values here with EI, to attempt to resolve strange missalignment issue. Now swapping Again for X axis
+#define Y_DIR_PIN          61//originals for these three were 60 61 56
 #define Y_ENABLE_PIN       56
-#define Y_MIN_PIN          15//changing this from 14 to avoid having to resolder crap
-#define Y_MAX_PIN          14//and changing this from 15. swapping.
+#define Y_MIN_PIN          14
+#define Y_MAX_PIN          15
 
 #define Z_STEP_PIN         46
 #define Z_DIR_PIN          48
@@ -83,8 +83,8 @@
 #define E0_DIR_PIN         28
 #define E0_ENABLE_PIN      24
 
-#define E1_STEP_PIN        36
-#define E1_DIR_PIN         34
+#define E1_STEP_PIN        36//swapped with Y axis,
+#define E1_DIR_PIN         34//originals were 36 34 30
 #define E1_ENABLE_PIN      30
 
 #define SDPOWER            -1
